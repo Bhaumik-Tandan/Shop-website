@@ -25,7 +25,7 @@ SECRET_KEY = 'txl5#_lj1(jgyq@_#e)=r$kcc598!uj7a^4o1*f!!#=t)j*0q#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['6fa974d687ad.ngrok.io', '127.0.0.1']
 
 
 # Application definition
@@ -54,7 +54,7 @@ ROOT_URLCONF = 'bacharam.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["static"],
+        'DIRS': ["html"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
