@@ -7,6 +7,16 @@ def index(request):
     return render(request, "index.html", p)
 
 
+def login(request):
+    p = {"head": "BACHCHARAM BAKERS", "tagline": "RISHTA WAHI SOCH NAYI"}
+    return render(request, "login.html", p)
+
+
+def signup(request):
+    p = {"head": "BACHCHARAM BAKERS", "tagline": "RISHTA WAHI SOCH NAYI"}
+    return render(request, "login.html", p)
+
+
 def ide(request):
     p = {"head": "BACHCHARAM BAKERS", "tagline": "RISHTA WAHI SOCH NAYI"}
     return render(request, "ide.html", p)
