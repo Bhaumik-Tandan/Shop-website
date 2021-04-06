@@ -19,9 +19,8 @@ class Product(Model):
     available = CharField(max_length=5, default="", choices=[
                           ("y", "Yes"), ("n", "No")])
     price = FloatField(default=1000.00)
-    discount = FloatField(default=1000.00)
     category = CharField(max_length=50, default="", choices=[
-        ("c", "Cakes"), ("sn", "Snacks"), ("sw", "sweets")])
+        ("ca", "Cakes"), ("sn", "Snacks"), ("sw", "Sweets")])
     recomended = CharField(max_length=5, default="", choices=[
                           ("y", "Yes"), ("n", "No")])
     image = ImageField(default=None)

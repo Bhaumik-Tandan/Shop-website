@@ -1,10 +1,31 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from forda.models import *
-p = {"head": "BACHCHARAM BAKERS", "tagline": "RISHTA WAHI SOCH NAYI"}
+c = ["Speciality", "Cake", "Sweets", "Snacks"]
+
+p = {"head": "BACHCHARAM BAKERS", "tagline": "RISHTA WAHI SOCH NAYI",
+     "category": c}
 
 
 def index(request):
+    pr = Product.objects.all()
+    d = []
+    # make empy dict=
+    for i in pr:
+        if i.available == "n":
+            continue
+        a = i.category
+        b = ""
+        if a == "ca":
+            b = "best"
+        elif a == "sw":
+            b = "seasonal"
+        elif a == "sn":
+            b = "other"
+        l = {"name": i.name, "description": i.description, "price": i.price,
+             "category": b, "recomended": i.recomended, "url": i.image.url}
+        d.append(l)
+    p["prod"] = d
     return render(request, "index.html", p)
 
 
