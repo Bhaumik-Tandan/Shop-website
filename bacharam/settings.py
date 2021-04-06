@@ -25,12 +25,13 @@ SECRET_KEY = 'txl5#_lj1(jgyq@_#e)=r$kcc598!uj7a^4o1*f!!#=t)j*0q#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['6fa974d687ad.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['6fa974d687ad.ngrok.io', 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'forda.apps.FordaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -122,3 +123,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'apna')
+
+# MDIA IMAGE WALA
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/products')
+MEDIA_URL = '/media/'
