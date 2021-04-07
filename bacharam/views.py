@@ -1,14 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from forda.models import *
+from django.views.generic import ListView
 c = ["Speciality", "Cake", "Sweets", "Snacks"]
 
 p = {"head": "BACHCHARAM BAKERS", "tagline": "RISHTA WAHI SOCH NAYI",
      "category": c}
+pr = Product.objects.all()
 
 
 def index(request):
-    pr = Product.objects.all()
     d = []
     # make empy dict=
     for i in pr:
@@ -16,17 +17,29 @@ def index(request):
             continue
         a = i.category
         b = ""
-        if a == "ca":
+        if a == "Cakes":
             b = "best"
-        elif a == "sw":
+        elif a == "Sweets":
             b = "seasonal"
-        elif a == "sn":
+        elif a == "Snacks":
             b = "other"
         l = {"name": i.name, "description": i.description, "price": i.price,
              "category": b, "recomended": i.recomended, "url": i.image.url}
         d.append(l)
     p["prod"] = d
     return render(request, "index.html", p)
+
+
+class ProductList(ListView):
+    model = Product
+
+
+def proddet(request, pk):
+    for i in pr:
+        if i.name == pk:
+            p["pd"] = i
+            break
+    return render(request, 'proddet.html', p)
 
 
 def login(request):

@@ -14,17 +14,16 @@ class User(Model):
 
 
 class Product(Model):
-    name = CharField(max_length=50, default="")
+    name = CharField(max_length=50, default="", unique="true")
     description = CharField(max_length=200, default="")
     available = CharField(max_length=5, default="", choices=[
                           ("y", "Yes"), ("n", "No")])
     price = FloatField(default=1000.00)
     category = CharField(max_length=50, default="", choices=[
-        ("ca", "Cakes"), ("sn", "Snacks"), ("sw", "Sweets")])
+        ("Cakes", "Cakes"), ("Snacks", "Snacks"), ("Sweets", "Sweets")])
     recomended = CharField(max_length=5, default="", choices=[
                           ("y", "Yes"), ("n", "No")])
     image = ImageField(default=None)
-    i = AutoField
 
     def __str__(self):
         return self.name

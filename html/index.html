@@ -29,7 +29,7 @@
 
 </head>
 
-<body>
+<body style="zoom: 150%;">
     <!-- Header Area start  -->
     <!-- Header Top  End -->
     <!-- Header Bottom  Start -->
@@ -282,56 +282,7 @@
 
     <div class="offcanvas-overlay"></div>
 
-    <!-- Hero/Intro Slider Start -->
-    <div class="section ">
-        <div class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1 dot-color-white">
-            <!-- Hero slider Active -->
-            <div class="swiper-wrapper">
-                <!-- Single slider item -->
-                <div class="hero-slide-item slider-height-2 swiper-slide d-flex">
-                    <div class="hero-bg-image">
-                        <img src="{% static  'apna/shop_photo1.jpg' %}" alt="">
-            </div>
-            <div class="container align-self-center">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 offset-2 align-self-center m-auto">
-                        <div class="hero-slide-content hero-slide-content-2 slider-animated-1 text-center">
 
-                            <h2 class="title-1">EK PARAMPARA</h2>
-                            <p class="w-100">SHRI BACHCHARAM SWEETS & BAKERS</p>
-                            <a href="#" class="btn btn-lg btn-primary btn-hover-dark mt-5">About us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Single slider item -->
-        <div class="hero-slide-item slider-height-2 swiper-slide d-flex text-center">
-            <div class="hero-bg-image">
-                <img src="{% static  'apna/shop_photo2.jpg' %}" alt="">
-            </div>
-            <div class="container align-self-center">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 offset-2 align-self-center m-auto">
-                        <div class="hero-slide-content hero-slide-content-2 slider-animated-1">
-                            <h2 class="title-1">EK VISHWAAS</h2>
-                            <p class="w-100">SHRI BACHCHARAM SWEETS & BAKERS</p>
-                            <a href="#" class="btn btn-lg btn-primary btn-hover-dark mt-5">About us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination swiper-pagination-white"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-buttons">
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-    </div>
-    </div>
-    </div>
 
     <!-- Hero/Intro Slider End -->
 
@@ -357,21 +308,21 @@
             </div>
             <div class="row product-item">
                 {% for i in prod %}
-                <div class="col-lg-3 col-sm-6 
-                {% if i.recomended == 'y' %} new {% endif %} {{i.category}} sell-item max-width-360">
-                    <div class="product-img">
-                        <img src="{{i.url}}" alt="" width="270" height="235">
-                        <div class="product-img-overlay">
-                            <a href="#" class="krishok-btn">Add to cart <i class="fa fa-shopping-cart"></i></a>
-                        </div>
-                        <p><a href="#">{{i.name}}</a></p>
-                        <h5>₹{{i.price}}</h5>
-                    </div>
+                <div class=" col-lg-3 col-sm-6 {% if i.recomended == 'y' %} new {% endif %} {{i.category}} sell-item
+                                max-width-360">
+                            <div class="product-img">
+                                <img src="{{i.url}}" alt="" width="270" height="235">
+                                <div class="product-img-overlay">
+                                    <a href="#" class="krishok-btn">Add to cart <i class="fa fa-shopping-cart"></i></a>
+                                </div>
 
-                </div>
-                {% endfor %}
-            </div>>
-    </section>
+                            </div>
+                            <p><a href="proddet/{{i.name}}">{{i.name}}</a></p>
+                            <h5>₹{{i.price}}</h5>
+            </div>
+            {% endfor %}
+        </div>
+        </section>
 
 </body>
 
@@ -380,7 +331,7 @@
 <script src="{% static  'assets/js/plugins/plugins.min.js' %}"></script>
 
 <!-- Main Js -->
-<script src="{% static  'assets2/js/main.js' %}"></script>
+<script src="{% static  'assets/js/main.js' %}"></script>
 <!-- nyi -->
 <script src="{% static  'assets2/js/jquery.min.js' %}"></script>
 <!-- Poppers JS -->
