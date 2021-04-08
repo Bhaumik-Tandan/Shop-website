@@ -315,7 +315,7 @@
                               <a href="/" id="` + key + "*r&|" + `" class="remove" style="zoom: 150%;">x</a>
                           </div>
                       </li>`
-                    t += parseInt(localStorage[key + "*pr&|"]);
+                    t += parseInt(localStorage[key + "*pr&|"]) * parseInt(localStorage[key]);
                 }
             }
             document.getElementById("elem").innerHTML = a;
