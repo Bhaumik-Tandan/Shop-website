@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,12 +16,25 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
     </script>
+    <script src="{% static  'assets/js/vendor/vendor.min.js' %}"></script>
+    <script src="{% static  'assets/js/plugins/plugins.min.js' %}"></script>
 </head>
 
 <body>
-    <span id="adc">bbk</span>
+    <div class="content" id="k">
+    </div>
     <script>
-        document.getElementById("adc").innerHTML = Object.keys(localStorage).length;
+        function j() {
+            p = `<a class="remove" id="sfaddsads" href="#">x</a>
+        <a class="remove" id="sfadddsfdfsdsads" href="#">x</a>`;
+            document.getElementById("k").innerHTML = p;
+        }
+        $(" .remove").click(function () {
+            console.log("eff");
+            a = this.id.substring(0, this.id.length - 4);
+            console.log(a);
+        });
+        j();
     </script>
 </body>
 

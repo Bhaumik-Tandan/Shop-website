@@ -15,7 +15,7 @@
     <!--  <link rel="stylesheet" href="{% static  'assets/css/style.css' %}" />-->
 </head>
 
-<body>
+<body style="zoom: 150%;">
     <!-- Header Area start  -->
     <!-- Header Top  End -->
     <!-- Header Bottom  Start -->
@@ -59,12 +59,12 @@
                         <a href="#offcanvas-cart"
                             class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                             <i class="icon-handbag"></i>
-                            <span class="header-action-num">01</span>
+                            <span class="header-action-num" id="cn"></span>
                             <!-- <span class="cart-amount">€30.00</span> -->
                         </a>
                         <a href="#offcanvas-mobile-menu"
                             class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
-                            <i class="icon-menu"></i>
+                            <i class=" icon-menu"></i>
                         </a>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                         <a href="#offcanvas-cart"
                             class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                             <i class="icon-handbag"></i>
-                            <span class="header-action-num">01</span>
+                            <span class="header-action-num" id="cna"></span>
                             <!-- <span class="cart-amount">€30.00</span> -->
                         </a>
                         <a href="#offcanvas-mobile-menu"
@@ -245,35 +245,40 @@
             var a = "";
             var t = 0;
             for (const [key, value] of Object.entries(localStorage)) {
-                if ((key.substring(key.length - 5, key.length)) != "*ur&|" && (key.substring(key
-                        .length - 5, key
+                if ((key.substring(key.length - 5, key.length)) != "*ur&|" && (key.substring(key.length - 5, key
                         .length)) != "*pr&|") {
                     a += `<li>
-                                              <a href="single-product.html" class="image"><img
-                                                      src="` + localStorage[key + "*ur&|"] + `" alt="Cart product Image"></a>
-                                              <div class="content">
-                                                  <a href="` + "proddet/" + key + `" class="title">` + key + `</a>
-                                                  <span class="quantity-price">` + localStorage[key] +
-                        ` x <span class="amount">` +
+                      <a href="` + "/proddet/" + key + `" class="image"><img
+                              src="` + localStorage[key + "*ur&|"] + `" alt="Cart product Image"></a>
+                      <div class="content">
+                          <a href="` + "/proddet/" + key + `" class="title">` + key + `</a>
+                          <span class="quantity-price">` + localStorage[key] + ` x <span class="amount">` +
                         localStorage[key + "*pr&|"] + `</span></span>
-                                                  <a href="#offcanvas-cart" class="remove">×</a>
-                                              </div>
-                                          </li>`
+                          <a href="/" id="` + key + "*r&|" + `" style="zoom: 150%;" class="remove">x</a>
+                      </div>
+                  </li>`
                     t += parseInt(localStorage[key + "*pr&|"]);
                 }
             }
             document.getElementById("elem").innerHTML = a;
             document.getElementById("total").innerHTML = "₹" + t;
+            $(".remove").click(function () {
+                a = this.id.substring(0, this.id.length - 4);
+                localStorage.removeItem(a);
+                localStorage.removeItem(a + "*pr&|");
+                localStorage.removeItem(a + "*ur&|");
+            });
         }
+        $(document).ready(cl);
+
         $(" .adc").click(function () {
-            a = this.id.split(",");
+            a = (this.id.substring(0, this.id.length - 1)).split(",");
             l = localStorage.getItem(a[0]);
             localStorage.setItem(a[0], (parseInt(l) || 0) + 1);
             localStorage.setItem(a[0] + "*pr&|", a[1]);
             localStorage.setItem(a[0] + "*ur&|", a[2]);
             cl();
         });
-        $(document).ready(cl);
     </script>
 
     <!-- Use the minified version files listed below for better performance and remove the files listed above -->

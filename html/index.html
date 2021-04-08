@@ -272,14 +272,14 @@
                 <div class=" col-lg-3 col-sm-6 {% if i.recomended == 'y' %} new {% endif %} {{i.category}} sell-item
                                 max-width-360" id="{{i.name}}">
                     <div class="product-img">
-                        <img src="{{i.url}}" alt="" width="270" height="235">
+                        <img src="{{i.url}}" alt="image" width="270" height="235">
                         <div class="product-img-overlay">
                             <a href="#{{i.name}}" id="{{i.name}},{{i.price}},{{i.url}}" class="krishok-btn adc">Add to
                                 cart <i class="fa fa-shopping-cart"></i></a>
                         </div>
 
                     </div>
-                    <p><a href="proddet/{{i.name}}">{{i.name}}</a></p>
+                    <p><a href="/proddet/{{i.name}}">{{i.name}}</a></p>
                     <h5>₹{{i.price}}</h5>
                 </div>
                 {% endfor %}
@@ -306,13 +306,13 @@
                 if ((key.substring(key.length - 5, key.length)) != "*ur&|" && (key.substring(key.length - 5, key
                         .length)) != "*pr&|") {
                     a += `<li>
-                          <a href="single-product.html" class="image"><img
+                          <a href="` + "/proddet/" + key + `" class="image"><img
                                   src="` + localStorage[key + "*ur&|"] + `" alt="Cart product Image"></a>
                           <div class="content">
-                              <a href="` + "proddet/" + key + `" class="title">` + key + `</a>
+                              <a href="` + "/proddet/" + key + `" class="title">` + key + `</a>
                               <span class="quantity-price">` + localStorage[key] + ` x <span class="amount">` +
                         localStorage[key + "*pr&|"] + `</span></span>
-                              <a href="#offcanvas-cart" class="remove">×</a>
+                              <a href="/" id="` + key + "*r&|" + `" class="remove" style="zoom: 150%;">x</a>
                           </div>
                       </li>`
                     t += parseInt(localStorage[key + "*pr&|"]);
@@ -320,7 +320,15 @@
             }
             document.getElementById("elem").innerHTML = a;
             document.getElementById("total").innerHTML = "₹" + t;
+            $(".remove").click(function () {
+                a = this.id.substring(0, this.id.length - 4);
+                localStorage.removeItem(a);
+                localStorage.removeItem(a + "*pr&|");
+                localStorage.removeItem(a + "*ur&|");
+            });
         }
+        $(document).ready(cl);
+
         $(" .adc").click(function () {
             a = this.id.split(",");
             l = localStorage.getItem(a[0]);
@@ -329,7 +337,6 @@
             localStorage.setItem(a[0] + "*ur&|", a[2]);
             cl();
         });
-        $(document).ready(cl);
     </script>
 
 
