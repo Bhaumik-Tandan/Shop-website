@@ -4,6 +4,7 @@
 
 <head>
     <title>{{head}}</title>
+
     <link rel="icon" href="{% static  'assets/images/logo/8.png' %}" sizes="32x32" />
     <link rel="icon" href="{% static  'assets/images/logo/8.png' %}" sizes="192x192" />
     <link rel="stylesheet" href="{% static  'assets/css/vendor/vendor.min.css' %}" />
@@ -158,35 +159,7 @@
                 <button class="offcanvas-close">×</button>
             </div>
             <div class="body customScroll">
-                <ul class="minicart-product-list">
-                    <li>
-                        <a href="single-product.html" class="image"><img
-                                src="{% static  'assets/images/product-image/1.jpg' %}" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Walnut Cutting Board</a>
-                            <span class="quantity-price">1 x <span class="amount">$91.86</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img
-                                src="{% static  'assets/images/product-image/2.jpg' %}' %}"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Lucky Wooden Elephant</a>
-                            <span class="quantity-price">1 x <span class="amount">$453.28</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="{% static  'assets/images/product-image/3.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Fish Cut Out Set</a>
-                            <span class="quantity-price">1 x <span class="amount">$87.34</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
+                <ul class="minicart-product-list" id="elem">
                 </ul>
             </div>
             <div class="foot">
@@ -194,20 +167,8 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td class="text-left">Sub-Total :</td>
-                                <td class="text-right">$523.30</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Eco Tax (-2.00) :</td>
-                                <td class="text-right">$4.52</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">VAT (20%) :</td>
-                                <td class="text-right">$104.66</td>
-                            </tr>
-                            <tr>
                                 <td class="text-left">Total :</td>
-                                <td class="text-right theme-color">$632.48</td>
+                                <td class="text-right theme-color" id="total"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -216,7 +177,8 @@
                     <a href="cart.html" class="btn btn-dark btn-hover-primary mb-6">view cart</a>
                     <a href="checkout.html" class="btn btn-outline-dark current-btn">checkout</a>
                 </div>
-                <p class="minicart-message">Free Shipping on All Orders Over $100!</p>
+                <!--Kal ko meggage dalna ho toh-->
+                <p class="minicart-message"></p>
             </div>
         </div>
     </div>
@@ -224,7 +186,7 @@
 
     <!-- OffCanvas Menu Start -->
     <div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu">
-        <button class="offcanvas-close" ></button>
+        <button class="offcanvas-close"></button>
         <div class="inner customScroll">
 
             <div class="offcanvas-menu mb-4">
@@ -232,7 +194,7 @@
                     <li><a href="/"><span class="menu-text">Home</span></a>
                     </li>
                     <li><a href="about.html">About Us</a></li>
-                  
+
 
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
@@ -240,7 +202,7 @@
             <!-- OffCanvas Menu End -->
 
             <!-- Language Currency start -->
-           
+
             <div class="offcanvas-social mt-auto">
                 <ul>
                     <li>
@@ -262,40 +224,64 @@
             </div>
         </div>
     </div>
+
+
     <!-- OffCanvas Menu End -->
-{% block body %}
-{% endblock body %}
+    {% block body %}
+    {% endblock body %}
+    <script src=" https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    </script>
+    <script>
+        function cl() {
+            document.getElementById("cna").innerHTML = Object.keys(localStorage).length / 3;
+            document.getElementById("cn").innerHTML = Object.keys(localStorage).length / 3;
+            var a = "";
+            var t = 0;
+            for (const [key, value] of Object.entries(localStorage)) {
+                if ((key.substring(key.length - 5, key.length)) != "*ur&|" && (key.substring(key
+                        .length - 5, key
+                        .length)) != "*pr&|") {
+                    a += `<li>
+                                              <a href="single-product.html" class="image"><img
+                                                      src="` + localStorage[key + "*ur&|"] + `" alt="Cart product Image"></a>
+                                              <div class="content">
+                                                  <a href="` + "proddet/" + key + `" class="title">` + key + `</a>
+                                                  <span class="quantity-price">` + localStorage[key] +
+                        ` x <span class="amount">` +
+                        localStorage[key + "*pr&|"] + `</span></span>
+                                                  <a href="#offcanvas-cart" class="remove">×</a>
+                                              </div>
+                                          </li>`
+                    t += parseInt(localStorage[key + "*pr&|"]);
+                }
+            }
+            document.getElementById("elem").innerHTML = a;
+            document.getElementById("total").innerHTML = "₹" + t;
+        }
+        $(" .adc").click(function () {
+            a = this.id.split(",");
+            l = localStorage.getItem(a[0]);
+            localStorage.setItem(a[0], (parseInt(l) || 0) + 1);
+            localStorage.setItem(a[0] + "*pr&|", a[1]);
+            localStorage.setItem(a[0] + "*ur&|", a[2]);
+            cl();
+        });
+        $(document).ready(cl);
+    </script>
 
-    <!-- Product tab Area End -->
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <script src="{% static  'assets/js/vendor/vendor.min.js' %}"></script>
+    <script src="{% static  'assets/js/plugins/plugins.min.js' %}"></script>
 
-
-    <!-- Global Vendor, plugins JS -->
-
-    <!-- Vendor JS -->
-    <!-- <script src=" assets/js/vendor/jquery-3.5.1.min.js"> </script> <script src="assets/js/vendor/popper.min.js">
-                            </script>
-                            <script src="assets/js/vendor/bootstrap.min.js"></script>
-                            <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
-                            <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script> -->
-
-                            <!--Plugins JS-->
-                            <!-- <script src="assets/js/plugins/swiper-bundle.min.js"></script>
-    <script src="assets/js/plugins/jquery-ui.min.js"></script>
-    <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-    <script src="assets/js/plugins/countdown.js"></script>
-    <script src="assets/js/plugins/scrollup.js"></script>
-    <script src="assets/js/plugins/jquery.waypoints.js"></script>
-    <script src="assets/js/plugins/jquery.lineProgressbar.js"></script>
-    <script src="assets/js/plugins/jquery.zoom.min.js"></script>
-    <script src="assets/js/plugins/venobox.min.js"></script>
-    <script src="assets/js/plugins/ajax-mail.js"></script> -->
-
-                            <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-                            <script src="{% static  'assets/js/vendor/vendor.min.js' %}"></script>
-                            <script src="{% static  'assets/js/plugins/plugins.min.js' %}"></script>
-
-                            <!-- Main Js -->
-                            <script src="{% static  'assets/js/main.js' %}"></script>
+    <!-- Main Js -->
+    <script src="{% static  'assets/js/main.js' %}"></script>
 </body>
 
 </html>
